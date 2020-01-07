@@ -95,7 +95,11 @@ input:focus {
 .btn--passive:active {
   background: #aec6f8;
 }
-
+.deletebtn {
+  background: #d30808;
+  color: white;
+  border-color: #d30808;
+}
 .btn--danger {
   background: #d30808;
   color: white;

@@ -7,6 +7,7 @@ const getAddbackdrop = document.getElementById("backdrop");
 const getUserInputs = getAddMovieModal.querySelectorAll("input");
 const getEntryText = document.getElementById("entry-text");
 const getMovieEl = document.getElementById("movie-list");
+const getConfirmDel = document.querySelector(".btn--danger");
 
 let movies = [];
 
@@ -58,7 +59,7 @@ renderNewMovieEl = (id, title, imageUrl, rating) => {
 
 //delete movie item from DOM
 deleteMovieUI = el => {
-  el = el.target.parentNode.parentNode.id;
+  // el = el.target.parentNode.parentNode.id;
   const elid = document.getElementById(el);
   // console.log(el);
   // console.log(elid);
@@ -74,10 +75,22 @@ deleteMovieUI = el => {
   console.log(movies);
 };
 
-//deletes a movie from DOM and Data
-deleteMovieHandler = el => {
-  deleteMovieUI(el);
+popConfirmDeleteModal = el => {
+  // const geCanclefirmDel = document.getElementById("cancle-delete")
+  // const getConfirmDel = document.querySelector(".btn--danger")
+  // ele = el.target.parentNode.parentNode.id;
+  // const elid = document.getElementById(el);
+  let getConfirmDelMoadal = document.getElementById("delete-modal");
+  getConfirmDelMoadal.classList.add("visible");
+  addbackdropHandler();
+  el = el.target.parentNode.parentNode.id;
+  console.log(el);
 };
+
+//deletes a movie from DOM and Data
+// deleteMovieHandler = el => {
+//   deleteMovieUI(el);
+// };
 
 //get values/movies info function
 const addMovieHandler = () => {
@@ -130,4 +143,9 @@ getStartAddMovieBtn.addEventListener("click", addMovieModalHandler);
 getCloseBackdrop.addEventListener("click", closeBackdropHandler);
 getAddbackdrop.addEventListener("click", closeBackdropHandler);
 getaddMovieBtn.addEventListener("click", addMovieHandler);
-getMovieEl.addEventListener("click", deleteMovieHandler);
+// getConfirmDel.addEventListener("click", deleteMovieHandler);
+getMovieEl.addEventListener("click", popConfirmDeleteModal);
+getConfirmDel.addEventListener(
+  "click",
+  deleteMovieUI.bind(popConfirmDeleteModal)
+);

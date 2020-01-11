@@ -8,6 +8,7 @@ const getUserInputs = getAddMovieModal.querySelectorAll("input");
 const getEntryText = document.getElementById("entry-text");
 const getMovieEl = document.getElementById("movie-list");
 const getConfirmDel = document.querySelector(".btn--danger");
+const getConfirmDelModal = document.getElementById("delete-modal");
 
 let movies = [];
 
@@ -35,6 +36,7 @@ const addbackdropHandler = () => {
 const closeBackdropHandler = () => {
   getAddbackdrop.classList.remove("visible");
   getAddMovieModal.classList.remove("visible");
+  getConfirmDelModal.classList.remove("visible");
   clearInputFields();
 };
 
@@ -58,39 +60,35 @@ renderNewMovieEl = (id, title, imageUrl, rating) => {
 };
 
 //delete movie item from DOM
-deleteMovieUI = el => {
-  // el = el.target.parentNode.parentNode.id;
-  const elid = document.getElementById(el);
-  // console.log(el);
-  // console.log(elid);
-  elid.parentNode.removeChild(elid);
+
+deleteMovieUI = elemID => {
+  //remove movie list from DOM
+  const movieLI = document.getElementById(elemID);
+  // console.log(movieLI);
+  // console.log(elemID);
+  movieLI.parentNode.removeChild(movieLI);
 
   // delete movie item from data
   let filteredMovies = movies.filter(filtered => {
-    return filtered.id !== parseInt(el);
+    return filtered.id !== parseInt(elemID);
   });
-
   //update movies list
   movies = filteredMovies;
-  console.log(movies);
+  // console.log(movies);
+  closeBackdropHandler();
+  updateUI();
 };
 
-popConfirmDeleteModal = el => {
-  // const geCanclefirmDel = document.getElementById("cancle-delete")
-  // const getConfirmDel = document.querySelector(".btn--danger")
-  // ele = el.target.parentNode.parentNode.id;
-  // const elid = document.getElementById(el);
-  let getConfirmDelMoadal = document.getElementById("delete-modal");
-  getConfirmDelMoadal.classList.add("visible");
+popConfirmDeleteModal = elemID => {
+  const getCanclefirmDel = document.getElementById("cancle-delete");
+  const getConfirmDel = document.querySelector(".btn--danger");
+  elemID = event.target.parentNode.parentNode.id;
+
+  getConfirmDelModal.classList.add("visible");
   addbackdropHandler();
-  el = el.target.parentNode.parentNode.id;
-  console.log(el);
+  getCanclefirmDel.addEventListener("click", closeBackdropHandler);
+  getConfirmDel.addEventListener("click", deleteMovieUI.bind(null, elemID));
 };
-
-//deletes a movie from DOM and Data
-// deleteMovieHandler = el => {
-//   deleteMovieUI(el);
-// };
 
 //get values/movies info function
 const addMovieHandler = () => {
@@ -143,9 +141,5 @@ getStartAddMovieBtn.addEventListener("click", addMovieModalHandler);
 getCloseBackdrop.addEventListener("click", closeBackdropHandler);
 getAddbackdrop.addEventListener("click", closeBackdropHandler);
 getaddMovieBtn.addEventListener("click", addMovieHandler);
-// getConfirmDel.addEventListener("click", deleteMovieHandler);
 getMovieEl.addEventListener("click", popConfirmDeleteModal);
-getConfirmDel.addEventListener(
-  "click",
-  deleteMovieUI.bind(popConfirmDeleteModal)
-);
+getConfirmDel.addEventListener("click", deleteMovieUI);

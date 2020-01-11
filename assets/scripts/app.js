@@ -136,11 +136,20 @@ const clearInputFields = () => {
     userInput.value = "";
   }
 };
-
-// add eventListener to startAddMovieBtn
-getStartAddMovieBtn.addEventListener("click", addMovieModalHandler);
-getCloseBackdrop.addEventListener("click", closeBackdropHandler);
-getAddbackdrop.addEventListener("click", closeBackdropHandler);
-getaddMovieBtn.addEventListener("click", addMovieHandler);
-getMovieEl.addEventListener("click", popConfirmDeleteModal);
-getConfirmDel.addEventListener("click", deleteMovieUI);
+function eventListeners() {
+  // add eventListener to startAddMovieBtn
+  getStartAddMovieBtn.addEventListener("click", addMovieModalHandler);
+  getCloseBackdrop.addEventListener("click", closeBackdropHandler);
+  getAddbackdrop.addEventListener("click", closeBackdropHandler);
+  getaddMovieBtn.addEventListener("click", addMovieHandler);
+  getMovieEl.addEventListener("click", popConfirmDeleteModal);
+  getConfirmDel.addEventListener("click", deleteMovieUI);
+  document.addEventListener("keyup", e => {
+    if (e.keyCode === 13) {
+      addMovieHandler();
+    }
+  });
+}
+document.addEventListener("DOMContentLoaded", function() {
+  eventListeners();
+});

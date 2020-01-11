@@ -25,6 +25,7 @@ const updateUI = () => {
 const addMovieModalHandler = () => {
   getAddMovieModal.classList.add("visible");
   addbackdropHandler();
+  getUserInputs[0].focus();
 };
 
 // add backdrop function

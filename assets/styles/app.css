@@ -1,7 +1,9 @@
 * {
   box-sizing: border-box;
 }
-
+:root {
+  --bg-colour: #84009e;
+}
 html {
   font-family: sans-serif;
 }
@@ -21,7 +23,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 2.5rem;
-  background: #00329e;
+  background: var(--bg-colour);
 }
 
 header h1 {
@@ -69,8 +71,8 @@ input:focus {
 .btn {
   font: inherit;
   padding: 0.5rem 1.5rem;
-  border: 1px solid #00329e;
-  background: #00329e;
+  border: 1px solid #c01c9d;
+  background: var(--bg-colour);
   color: white;
   border-radius: 6px;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
@@ -85,7 +87,7 @@ input:focus {
 }
 
 .btn--passive {
-  color: #00329e;
+  color: var(--bg-colour);
   background: transparent;
   border: none;
   box-shadow: none;
@@ -93,9 +95,13 @@ input:focus {
 
 .btn--passive:hover,
 .btn--passive:active {
-  background: #aec6f8;
+  background: #b73cf0;
 }
-
+.deletebtn {
+  background: #d30808;
+  color: white;
+  border-color: #d30808;
+}
 .btn--danger {
   background: #d30808;
   color: white;
@@ -129,7 +135,7 @@ input:focus {
   margin: 0;
   padding: 1rem;
   border-bottom: 1px solid #00329e;
-  background: #00329e;
+  background: var(--bg-colour);
   color: white;
   border-radius: 10px 10px 0 0;
 }
